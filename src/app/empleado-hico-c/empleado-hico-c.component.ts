@@ -13,11 +13,8 @@ export class EmpleadoHicoCComponent {
 
   arrayCaracteristicas = [''];
 
-
-
   agregaCaracteristica(caracteristica: string) {
     this.arrayCaracteristicas.push(caracteristica);
-
   }
 
 }
