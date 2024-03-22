@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { EmpleadosService } from '../empleados.service';
 import { Empleado } from '../empleado.model';
 
@@ -9,8 +9,17 @@ import { Empleado } from '../empleado.model';
   styleUrls: ['./actualiza.component.css']
 })
 export class ActualizaComponent {
-  constructor(private router:Router, private empleadosService: EmpleadosService){
+  constructor(private router:Router, private empleadosService: EmpleadosService, private route:ActivatedRoute){
     this.empleados = this.empleadosService.empleados
+
+    this.indice = this.route.snapshot.params['id']
+
+    let empleado: Empleado = this.empleadosService.encontrarEmpleado(this.indice)
+
+    this.cuadroNombre = empleado.nombre
+    this.cuadroApellido = empleado.apellido
+    this.cuadroCargo = empleado.cargo
+    this.cuadroSalario = empleado.salario
   }
 
   volverHome(){
@@ -19,10 +28,10 @@ export class ActualizaComponent {
 
   empleados:Empleado[]=[]
 
-  agregarEmpleado(){
+  actualizaEmpleado(){
     let miEmpleado = new Empleado(this.cuadroNombre, this.cuadroApellido, this.cuadroCargo, this.cuadroSalario)
     //this.miServicio.muestraMensaje("Nombre del empleado: " + miEmpleado.nombre)
-    this.empleadosService.agregarEmpleadoServicio(miEmpleado)
+    this.empleadosService.actualizarEmpleado(this.indice, miEmpleado)
     this.router.navigate([''])
 
   }
@@ -31,4 +40,6 @@ export class ActualizaComponent {
   cuadroApellido: string = '';
   cuadroCargo: string = '';
   cuadroSalario: number = 0;
+
+  indice:number;
 }
