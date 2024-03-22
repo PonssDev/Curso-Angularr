@@ -36,6 +36,12 @@ export class ActualizaComponent {
 
   }
 
+  eliminaEmpleado(){
+    this.empleadosService.eliminarEmpleado(this.indice)
+    this.router.navigate([''])
+
+  }
+
   cuadroNombre:string = '';
   cuadroApellido: string = '';
   cuadroCargo: string = '';
