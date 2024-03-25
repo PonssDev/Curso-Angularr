@@ -2,11 +2,14 @@ import { Injectable } from "@angular/core";
 import { Empleado } from "./empleado.model";
 import { ServicioEmpleadosService } from "./servicio-empleados.service";
 import { DataServices } from "./data.services";
+import { HttpClient } from "@angular/common/http";
 
-@Injectable()
-export class EmpleadosService{
+@Injectable({
+  providedIn: 'root'
+})
+export class EmpleadosService {
 
-  constructor(private servicioVentanaEmergente: ServicioEmpleadosService, private dataService: DataServices){}
+  constructor(private servicioVentanaEmergente: ServicioEmpleadosService, private dataService: DataServices, private http: HttpClient) { }
 
   empleados: Empleado[] = [
     new Empleado('Juan', 'Días', 'Presidente', 7500),
@@ -15,21 +18,21 @@ export class EmpleadosService{
     new Empleado('Laura', 'López', 'Administrativo', 2500),
   ];
 
-  agregarEmpleadoServicio(empleado:Empleado){
+  agregarEmpleadoServicio(empleado: Empleado) {
     this.servicioVentanaEmergente.muestraMensaje("Persona que se va a agregar: " + "\n" +
-    empleado.nombre + "\n" + "Salario: " + empleado.nombre)
+      empleado.nombre + "\n" + "Salario: " + empleado.nombre)
     this.empleados.push(empleado)
     this.dataService.guardarEmpleados(this.empleados)
 
   }
 
-  encontrarEmpleado(indice:number){
+  encontrarEmpleado(indice: number) {
     let empleado: Empleado = this.empleados[indice]
 
     return empleado
   }
 
-  actualizarEmpleado(indice: number, empleado:Empleado){
+  actualizarEmpleado(indice: number, empleado: Empleado) {
     let empleadoModificado = this.empleados[indice]
 
     empleadoModificado.nombre = empleado.nombre
@@ -39,9 +42,9 @@ export class EmpleadosService{
 
   }
 
-  eliminarEmpleado(indice: number){
+  eliminarEmpleado(indice: number) {
 
-    this.empleados.splice(indice,1)
+    this.empleados.splice(indice, 1)
 
   }
 

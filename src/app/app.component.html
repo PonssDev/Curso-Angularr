@@ -1,9 +1,13 @@
 <nav class="navbar navbar-expand-sm bg-light">
-
   <!-- Links -->
   <ul class="navbar-nav">
     <li class="nav-item">
-      <a class="nav-link" href="#">Home</a>
+      <!-- Mostramos el id del JSON -->
+      <a class="nav-link" href="#" *ngIf="apiContent | async as apiData">
+        Home
+        {{ apiData.userId }}
+      </a>
+      <!-- Con la pipe async conseguimos suscribirnos sin necesidad de hacerlo en app.component.ts -->
     </li>
     <li class="nav-item">
       <a class="nav-link" href="/proyectos">Proyectos</a>
@@ -15,7 +19,6 @@
       <a class="nav-link" href="/contacto">Contacto</a>
     </li>
   </ul>
-
 </nav>
 
 <router-outlet></router-outlet>
