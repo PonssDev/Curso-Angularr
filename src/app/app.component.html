@@ -3,9 +3,8 @@
   <ul class="navbar-nav">
     <li class="nav-item">
       <!-- Mostramos el id del JSON -->
-      <a class="nav-link" href="#" *ngIf="apiContent | async as apiData">
+      <a class="nav-link" href="#">
         Home
-        {{ apiData.userId }}
       </a>
       <!-- Con la pipe async conseguimos suscribirnos sin necesidad de hacerlo en app.component.ts -->
     </li>
@@ -20,5 +19,17 @@
     </li>
   </ul>
 </nav>
+
+<ng-container *ngFor="let dato of (apiContent2 | async), let i = index" style="list-style: none;">
+  <p>Posición {{i}}:</p>
+  <ul>
+    <li style="list-style: none;">
+      userId: {{dato.id}}<br>
+      id: {{dato.id}} <br>
+      title: {{dato.title}} <br>
+      completed: {{dato.completed ? 'Si' : 'No'}}
+    </li>
+  </ul>
+</ng-container>
 
 <router-outlet></router-outlet>
