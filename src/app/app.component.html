@@ -3,9 +3,7 @@
   <ul class="navbar-nav">
     <li class="nav-item">
       <!-- Mostramos el id del JSON -->
-      <a class="nav-link" href="#">
-        Home
-      </a>
+      <a class="nav-link" href="#"> Home </a>
       <!-- Con la pipe async conseguimos suscribirnos sin necesidad de hacerlo en app.component.ts -->
     </li>
     <li class="nav-item">
@@ -19,23 +17,25 @@
     </li>
   </ul>
 </nav>
+<!-- Aquí hay un for en el que podemos recorrer y mostrar los diferentes -->
+<!-- let dato of (apiContent | async), let i = index -->
 
-<ng-container *ngFor="let dato of (apiContent | async), let i = index" style="list-style: none;">
-  <p>Posición {{i}}:</p>
-  <ul>
-    <li style="list-style: none;">
-      userId: {{dato.id}}<br>
-      id: {{dato.id}} <br>
-      title: {{dato.title}} <br>
-      completed: {{dato.completed ? 'Si' : 'No'}}
+<!-- Con este solo muestra uno -->
+<ng-container *ngIf="apiContent | async as dato">
+  <p>Posición {{ i + 1 }}:</p>
+  <ul style="list-style: none">
+    <li>
+      userId: {{ dato.id }}<br />
+      id: {{ dato.id }} <br />
+      title: {{ dato.title }} <br />
+      completed: {{ dato.completed ? "Si" : "No" }}
     </li>
   </ul>
 </ng-container>
 
-<div *ngIf="ObservableApi | async as data">
-  <!-- Llamamos a data -->
+<!-- <div *ngIf="ObservableApi | async as data">
   <p>{{data.api_1 | json}}</p>
   <p>{{data.api_2 | json}}</p>
-</div>
+</div> -->
 
 <router-outlet></router-outlet>
