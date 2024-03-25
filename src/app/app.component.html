@@ -20,7 +20,7 @@
   </ul>
 </nav>
 
-<ng-container *ngFor="let dato of (apiContent2 | async), let i = index" style="list-style: none;">
+<ng-container *ngFor="let dato of (apiContent | async), let i = index" style="list-style: none;">
   <p>Posición {{i}}:</p>
   <ul>
     <li style="list-style: none;">
@@ -31,5 +31,11 @@
     </li>
   </ul>
 </ng-container>
+
+<div *ngIf="ObservableApi | async as data">
+  <!-- Llamamos a data -->
+  <p>{{data.api_1 | json}}</p>
+  <p>{{data.api_2 | json}}</p>
+</div>
 
 <router-outlet></router-outlet>

@@ -4,3 +4,4 @@ export interface InfoApi {
   title: string
   completed: boolean
 }
+

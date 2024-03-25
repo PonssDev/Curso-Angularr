@@ -14,6 +14,7 @@ export class AppComponent {
   // Creamos una interface tipo infoApi para no poner el any.
   apiContent: Observable<InfoApi> = this.dataService.getApi().pipe(map((datos: InfoApi) => datos))
   apiContent2: Observable<InfoApi2> = this.dataService.getApi2().pipe(map((datos: InfoApi2) => datos))
+  // Usando forkJoin
+  public ObservableApi = this.dataService.mergeObservables()
   constructor(private dataService: DataServices) { }
-
 }
